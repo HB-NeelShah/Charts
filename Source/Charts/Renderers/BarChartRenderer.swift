@@ -325,8 +325,11 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
         trans.rectValuesToPixel(&_buffers[index].rects)
 
         let borderWidth = dataSet.barBorderWidth
+        let dashBorderWidh = dataSet.dashBorderWidth
         let borderColor = dataSet.barBorderColor
         let drawBorder = borderWidth > 0.0
+        
+        let dashBorder = dashBorderWidh > 0.0
         
         context.saveGState()
         
@@ -430,6 +433,13 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 context.setStrokeColor(borderColor.cgColor)
                 context.setLineWidth(borderWidth)
                 context.stroke(barRect)
+            }
+            
+            if dashBorder && (j % dataSet.moduleToShowDash == 0){
+                context.setStrokeColor(borderColor.cgColor)
+                context.setLineWidth(dashBorderWidh)
+                context.setLineDash(phase: 3, lengths: [3,3])
+                context.stroke(CGRect(x: barRect.origin.x + 1, y: barRect.origin.y, width: barRect.size.width - 2, height: barRect.size.height))
             }
 
             // Create and append the corresponding accessibility element to accessibilityOrderedElements
