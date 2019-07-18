@@ -34,7 +34,7 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
         super.init(entries: entries, label: label)
         initialize()
     }
-
+    
     // MARK: - Data functions and accessors
     
     /// the maximum number of bars that are stacked upon each other, this value
@@ -139,19 +139,25 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
     
     /// the color used for drawing the bar-shadows. The bar shadows is a surface behind the bar that indicates the maximum value
     open var barShadowColor = NSUIColor(red: 215.0/255.0, green: 215.0/255.0, blue: 215.0/255.0, alpha: 1.0)
-
+    
     /// the width used for drawing borders around the bars. If borderWidth == 0, no border will be drawn.
     open var barBorderWidth : CGFloat = 0.0
-
+    
     /// the color drawing borders around the bars.
     open var barBorderColor = NSUIColor.black
-
+    
     /// the alpha value (transparency) that is used for drawing the highlight indicator bar. min = 0.0 (fully transparent), max = 1.0 (fully opaque)
     open var highlightAlpha = CGFloat(120.0 / 255.0)
     
     open var moduleToShowDash = 0
     
     open var dashBorderWidth: CGFloat = 0.0
+    
+    open var isToShowIconAtSpecific = false
+    
+    open var barIndex = 0
+    
+    open var barInnerIndex = 0
     
     // MARK: - NSCopying
     
@@ -161,13 +167,18 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
         copy._stackSize = _stackSize
         copy._entryCountStacks = _entryCountStacks
         copy.stackLabels = stackLabels
-
+        
         copy.barShadowColor = barShadowColor
         copy.barBorderWidth = barBorderWidth
         copy.barBorderColor = barBorderColor
         copy.highlightAlpha = highlightAlpha
         copy.dashBorderWidth = dashBorderWidth
         copy.moduleToShowDash = moduleToShowDash
+        copy.isToShowIconAtSpecific = isToShowIconAtSpecific
+        copy.barIndex = barIndex
+        copy.barInnerIndex = barInnerIndex
+        
         return copy
     }
 }
+
