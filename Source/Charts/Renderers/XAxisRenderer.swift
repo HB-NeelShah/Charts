@@ -171,7 +171,7 @@ open class XAxisRenderer: AxisRendererBase
         let paraStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         paraStyle.alignment = .center
         
-        let labelAttrs: [NSAttributedString.Key : Any] = [
+        var labelAttrs: [NSAttributedString.Key : Any] = [
             .font: xAxis.labelFont,
             .foregroundColor: xAxis.labelTextColor,
             .paragraphStyle: paraStyle
@@ -195,6 +195,22 @@ open class XAxisRenderer: AxisRendererBase
         
         for i in stride(from: 0, to: entries.count, by: 1)
         {
+            
+            if i==xAxis.highlightedIndex
+            {
+                labelAttrs = [
+                    .font: xAxis.labelHighlightedFont,
+                    .foregroundColor: xAxis.labelHighlightedTextColor,
+                    .paragraphStyle: paraStyle
+                ]
+            } else {
+                labelAttrs = [
+                    .font: xAxis.labelFont,
+                    .foregroundColor: xAxis.labelTextColor,
+                    .paragraphStyle: paraStyle
+                ]
+            }
+            
             if centeringEnabled
             {
                 position.x = CGFloat(xAxis.centeredEntries[i])
