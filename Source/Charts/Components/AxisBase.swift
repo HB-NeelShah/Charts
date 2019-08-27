@@ -27,7 +27,7 @@ open class AxisBase: ComponentBase
     @objc open var labelFont = NSUIFont.systemFont(ofSize: 10.0)
     @objc open var labelTextColor = NSUIColor.black
     
-    @objc open var highlightedIndex = 0
+    @objc open var highlightedIndex = -1
     @objc open var labelHighlightedFont = NSUIFont.boldSystemFont(ofSize: 10.0)
     @objc open var labelHighlightedTextColor = NSUIColor.black
     
