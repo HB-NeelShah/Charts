@@ -158,6 +158,9 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
     open var barIndex = 0
     
     open var barInnerIndex = 0
+	
+	open var showCornerRadious = false
+	open var cornerRadiousValue = 10.0
     
     // MARK: - NSCopying
     
@@ -177,6 +180,8 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
         copy.isToShowIconAtSpecific = isToShowIconAtSpecific
         copy.barIndex = barIndex
         copy.barInnerIndex = barInnerIndex
+		copy.showCornerRadious = showCornerRadious
+		copy.cornerRadiousValue = cornerRadiousValue 
         
         return copy
     }

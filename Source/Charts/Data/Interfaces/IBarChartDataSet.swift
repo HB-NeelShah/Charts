@@ -49,5 +49,8 @@ public protocol IBarChartDataSet: IBarLineScatterCandleBubbleChartDataSet
     var barIndex: Int { get set }
     
     var barInnerIndex: Int { get set }
+	
+	var showCornerRadious: Bool { get set }
+	var cornerRadiousValue: Int { get set }
 }
 

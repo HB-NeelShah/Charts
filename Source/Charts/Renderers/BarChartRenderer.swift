@@ -425,8 +425,16 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 // Set the color for the currently drawn value. If the index is out of bounds, reuse colors.
                 context.setFillColor(dataSet.color(atIndex: j).cgColor)
             }
-            
-            context.fill(barRect)
+			if dataSet.showCornerRadious == true
+			{
+				let clipPath = UIBezierPath(roundedRect: barRect, cornerRadius: CGFloat(dataSet.cornerRadiousValue)).cgPath
+				context.addPath(clipPath)
+				context.closePath()
+				context.fillPath()
+			}
+			else{
+				context.fill(barRect)
+			}
             
             if drawBorder
             {
