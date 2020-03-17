@@ -314,6 +314,7 @@ open class PieChartRenderer: DataRenderer
         let usePercentValuesEnabled = chart.usePercentValuesEnabled
         let entryLabelColor = chart.entryLabelColor
         let entryLabelFont = chart.entryLabelFont
+		let showLabelInside = chart.showValueLabelInside
 
         var angle: CGFloat = 0.0
         var xIndex = 0
@@ -551,13 +552,18 @@ open class PieChartRenderer: DataRenderer
                     }
                     else if drawYInside
                     {
-                        ChartUtils.drawText(
-                            context: context,
-                            text: valueText,
-                            point: CGPoint(x: x, y: y + lineHeight / 2.0),
-                            align: .center,
-                            attributes: [NSAttributedString.Key.font: valueFont, NSAttributedString.Key.foregroundColor: valueTextColor]
-                        )
+                        if showLabelInside{
+							ChartUtils.drawText(context: context, text: valueText, point: CGPoint(x: x, y: y + lineHeight / 2.0), attributes: [NSAttributedString.Key.font: valueFont, NSAttributedString.Key.foregroundColor: valueTextColor], anchor: CGPoint(x: 0.5, y: 0.5), angleRadians: angle.DEG2RAD)
+						}
+						else{
+							ChartUtils.drawText(
+								context: context,
+								text: valueText,
+								point: CGPoint(x: x, y: y + lineHeight / 2.0),
+								align: .center,
+								attributes: [NSAttributedString.Key.font: valueFont, NSAttributedString.Key.foregroundColor: valueTextColor]
+							)
+						}
                     }
                 }
 

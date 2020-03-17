@@ -571,6 +571,17 @@ open class PieChartView: PieRadarChartViewBase
             setNeedsDisplay()
         }
     }
+	
+	private var _showValueLabelInside: Bool = false
+	
+	@objc open var showValueLabelInside: Bool{
+		get{
+			return _showValueLabelInside
+		}
+		set{
+			_showValueLabelInside = newValue
+		}
+	}
     
     /// The max angle that is used for calculating the pie-circle.
     /// 360 means it's a full pie-chart, 180 results in a half-pie-chart.
