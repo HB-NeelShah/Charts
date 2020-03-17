@@ -160,7 +160,7 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
     open var barInnerIndex = 0
 	
 	open var showCornerRadious = false
-	open var cornerRadiousValue = 10.0
+	open var cornerRadiousValue: CGFloat = 10.0
     
     // MARK: - NSCopying
     

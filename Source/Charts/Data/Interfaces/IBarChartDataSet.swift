@@ -51,6 +51,6 @@ public protocol IBarChartDataSet: IBarLineScatterCandleBubbleChartDataSet
     var barInnerIndex: Int { get set }
 	
 	var showCornerRadious: Bool { get set }
-	var cornerRadiousValue: Float { get set }
+	var cornerRadiousValue: CGFloat { get set }
 }
 
