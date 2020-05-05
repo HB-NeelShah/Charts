@@ -47,8 +47,12 @@ open class AxisBase: ComponentBase
     
     /// flag that indicates of the labels of this axis should be drawn or not
     @objc open var drawLabelsEnabled = true
+	
+	@objc open var multipleLineTextAllighment = NSTextAlignment.right
     
     private var _centerAxisLabelsEnabled = false
+	
+	private var _multipleLineTextAllighmentEnable = false
 
     /// Centers the axis labels instead of drawing them at their original position.
     /// This is useful especially for grouped BarChart.
@@ -56,6 +60,12 @@ open class AxisBase: ComponentBase
     {
         get { return _centerAxisLabelsEnabled && entryCount > 0 }
         set { _centerAxisLabelsEnabled = newValue }
+    }
+	
+	@objc open var multipleLineTextAllighmentEnable: Bool
+    {
+        get { return _multipleLineTextAllighmentEnable && entryCount > 0 }
+        set { _multipleLineTextAllighmentEnable = newValue }
     }
     
     @objc open var isCenterAxisLabelsEnabled: Bool
@@ -67,7 +77,7 @@ open class AxisBase: ComponentBase
     private var _limitLines = [ChartLimitLine]()
     
     /// Are the LimitLines drawn behind the data or in front of the data?
-    /// 
+    ///
     /// **default**: false
     @objc open var drawLimitLinesBehindDataEnabled = false
 
@@ -188,7 +198,7 @@ open class AxisBase: ComponentBase
     @objc open var isDrawLabelsEnabled: Bool { return drawLabelsEnabled }
     
     /// Are the LimitLines drawn behind the data or in front of the data?
-    /// 
+    ///
     /// **default**: false
     @objc open var isDrawLimitLinesBehindDataEnabled: Bool { return drawLimitLinesBehindDataEnabled }
     
@@ -361,3 +371,4 @@ open class AxisBase: ComponentBase
         axisRange = abs(max - min)
     }
 }
+

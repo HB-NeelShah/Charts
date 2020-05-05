@@ -175,8 +175,18 @@ open class ChartUtils
         
         NSUIGraphicsPushContext(context)
         
-        
-        (textToDraw as NSString).draw(at: point, withAttributes: attributes)
+		let there = attributes?.contains(where: { (key, value) -> Bool in
+			if key == .paragraphStyle{
+				return true
+			}
+			return false
+		}) ?? false
+		if there{
+			(textToDraw as NSString).draw(in: CGRect(origin: point, size: textToDraw.size(withAttributes: attributes)), withAttributes: attributes)
+		}
+		else{
+			(textToDraw as NSString).draw(at: point, withAttributes: attributes)
+		}
         
         NSUIGraphicsPopContext()
     }

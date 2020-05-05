@@ -133,18 +133,32 @@ open class YAxisRenderer: AxisRendererBase
         
         let from = yAxis.isDrawBottomYLabelEntryEnabled ? 0 : 1
         let to = yAxis.isDrawTopYLabelEntryEnabled ? yAxis.entryCount : (yAxis.entryCount - 1)
-        
+		
+		
+		let style = NSMutableParagraphStyle()
+		style.alignment = yAxis.multipleLineTextAllighment
+		
         for i in stride(from: from, to: to, by: 1)
         {
             let text = yAxis.getFormattedLabel(i)
-            
-            ChartUtils.drawText(
-                context: context,
-                text: text,
-                point: CGPoint(x: fixedPosition, y: positions[i].y + offset),
-                align: textAlign,
-                attributes: [.font: labelFont, .foregroundColor: labelTextColor]
-            )
+            if yAxis.multipleLineTextAllighmentEnable == true{
+				ChartUtils.drawText(
+					context: context,
+					text: text,
+					point: CGPoint(x: fixedPosition, y: positions[i].y + offset),
+					align: textAlign,
+					attributes: [.font: labelFont, .foregroundColor: labelTextColor, .paragraphStyle: style]
+				)
+			}
+			else{
+				ChartUtils.drawText(
+					context: context,
+					text: text,
+					point: CGPoint(x: fixedPosition, y: positions[i].y + offset),
+					align: textAlign,
+					attributes: [.font: labelFont, .foregroundColor: labelTextColor]
+				)
+			}
         }
     }
     
@@ -384,3 +398,4 @@ open class YAxisRenderer: AxisRendererBase
         context.restoreGState()
     }
 }
+
